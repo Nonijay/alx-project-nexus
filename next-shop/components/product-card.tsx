@@ -5,7 +5,7 @@ import {Card, CardContent, CardHeader, CardTitle} from './ui/card'
 import { Button } from './ui/button'
 
 interface Props {
-    product: Stripe.Product[]
+    product: Stripe.Product;
 }
 
 const ProductCard = ({product}: Props) => {
