@@ -13,7 +13,7 @@ const ProductCard = ({product}: Props) => {
 
     
   return (
-    <Link href= {"/products/1"} className='block h-full'>
+    <Link href= {`/products/${product.id}`} className='block h-full'>
         <Card className = 'group hover:shadow-2xl transition duration-300 py-10 h-full flex flex-col border-gray-300 gap-0 border-1 mt-4'>
             {product.images && product.images[0] && (
                 <div className="relative h-80 w-full">
