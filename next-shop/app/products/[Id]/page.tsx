@@ -1,21 +1,16 @@
-import { stripe } from '@/lib/stripe';
-import ProductDetail from '@/components/product-detail';
+import ProductDetail from "@/components/product-detail";
+import { stripe } from "@/lib/stripe";
 
-const ProductPageId = async (
-    {params,}: {params: { id:  string};
-}) => {
-    // const  id  = await params;
-    try {
-        const product = await stripe.products.retrieve(params.id, {
-            expand: ["default_price"],
-          });
-    } catch (error) {
-        console.error('Error retrieving Stripe product:', error);
-        // Log the specific error to your terminal
-    }
-      
-  return (
-  <ProductDetail product = {product} />
-)};
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const product = await stripe.products.retrieve(id, {
+    expand: ["default_price"],
+  });
 
-export default ProductPageId
+  const plainProduct = JSON.parse(JSON.stringify(product));
+  return <ProductDetail product={plainProduct} />;
+}
